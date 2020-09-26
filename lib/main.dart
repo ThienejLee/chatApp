@@ -1,7 +1,6 @@
 import 'package:ChatApp/views/signup.dart';
 import 'package:flutter/material.dart';
 
-import 'views/signin.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
       title: 'Chat App demo',
       debugShowCheckedModeBanner: false,
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignIn()
+      home: SignUp()
     );
   }
 }
