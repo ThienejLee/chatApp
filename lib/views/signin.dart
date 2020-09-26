@@ -80,7 +80,7 @@ class _SignInState extends State<SignIn> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have account",
+                        "Don't have account? ",
                         style: mediumTextStyle(),
                       ),
                       Text(

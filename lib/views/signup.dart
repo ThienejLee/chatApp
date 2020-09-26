@@ -83,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Already have account",
+                        "Already have account? ",
                         style: mediumTextStyle(),
                       ),
                       Text(
