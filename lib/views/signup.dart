@@ -1,9 +1,13 @@
 import 'package:ChatApp/services/auth.dart';
+import 'package:ChatApp/services/database.dart';
 import 'package:ChatApp/views/chatRoomsScreen.dart';
 import 'package:ChatApp/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
+  final Function toggle;
+  SignUp(this.toggle);
+
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -12,7 +16,7 @@ class _SignUpState extends State<SignUp> {
   bool isLoading = false;
 
   AuthMethods authMethods = new AuthMethods();
-
+  DataBaseMethods dataBaseMethods = new DataBaseMethods();
   final formKey = GlobalKey<FormState>();
 
   TextEditingController usernameTextEditingController =
@@ -24,6 +28,10 @@ class _SignUpState extends State<SignUp> {
 
   signMeUp() {
     if (formKey.currentState.validate()) {
+      Map<String, String> userInfoMap = {
+        "name": usernameTextEditingController.text,
+        "email": emailTextEditingController.text,
+      };
       setState(() {
         isLoading = true;
       });
@@ -34,6 +42,7 @@ class _SignUpState extends State<SignUp> {
           .then((val) {
         // print("${val.uid}");
 
+        dataBaseMethods.uploadUserInfo(userInfoMap);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -158,12 +167,19 @@ class _SignUpState extends State<SignUp> {
                             "Already have account? ",
                             style: mediumTextStyle(),
                           ),
-                          Text(
-                            "SignIn now",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                decoration: TextDecoration.underline),
+                          GestureDetector(
+                            onTap: () {
+                              widget.toggle();
+                            },
+                            child: Container(
+                              child: Text(
+                                "SignIn now",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ),
                           )
                         ],
                       ),
