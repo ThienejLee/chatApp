@@ -1,4 +1,5 @@
 import 'package:ChatApp/services/auth.dart';
+import 'package:ChatApp/views/chatRoomsScreen.dart';
 import 'package:ChatApp/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
@@ -21,17 +22,23 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordTextEditingController =
       new TextEditingController();
 
-  signMeUP() {
+  signMeUp() {
     if (formKey.currentState.validate()) {
       setState(() {
         isLoading = true;
       });
 
       authMethods
-          .signUpWithEmailAndPassword(
-              emailTextEditingController.text, passwordTextEditingController.text)
+          .signUpWithEmailAndPassword(emailTextEditingController.text,
+              passwordTextEditingController.text)
           .then((val) {
-        print("$val");
+        // print("${val.uid}");
+
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatRoom(),
+            ));
       });
     }
   }
@@ -104,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          signMeUP();
+                          signMeUp();
                         },
                         child: Container(
                           alignment: Alignment.center,

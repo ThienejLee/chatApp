@@ -2,6 +2,8 @@ import 'package:ChatApp/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggle;
+  SignIn(this.toggle);
   @override
   _SignInState createState() => _SignInState();
 }
@@ -82,6 +84,9 @@ class _SignInState extends State<SignIn> {
                       Text(
                         "Don't have account? ",
                         style: mediumTextStyle(),
+                      ),
+                      Container(
+                        
                       ),
                       Text(
                         "Register now",
