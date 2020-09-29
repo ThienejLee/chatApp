@@ -1,4 +1,6 @@
 import 'package:ChatApp/helper/authenticate.dart';
+import 'package:ChatApp/helper/constants.dart';
+import 'package:ChatApp/helper/helperfunctions.dart';
 import 'package:ChatApp/services/auth.dart';
 import 'package:ChatApp/views/search.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,18 @@ class ChatRoom extends StatefulWidget {
 
 class _ChatRoomState extends State<ChatRoom> {
   AuthMethods authMethods = new AuthMethods();
+
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
+
+  getUserInfo() async {
+    Constants.myName = await HelperFunctions.getUserNameSharedPreference();
+    setState(() {
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +48,9 @@ class _ChatRoomState extends State<ChatRoom> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.search),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) => SearchScreen()
-          ));
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SearchScreen()));
         },
       ),
     );
