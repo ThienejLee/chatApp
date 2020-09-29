@@ -32,6 +32,7 @@ class _SignUpState extends State<SignUp> {
         "name": usernameTextEditingController.text,
         "email": emailTextEditingController.text,
       };
+      
       setState(() {
         isLoading = true;
       });
