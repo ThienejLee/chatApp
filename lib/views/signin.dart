@@ -1,6 +1,9 @@
+import 'package:ChatApp/helper/helperfunctions.dart';
 import 'package:ChatApp/services/auth.dart';
+import 'package:ChatApp/services/database.dart';
 import 'package:ChatApp/views/chatRoomsScreen.dart';
 import 'package:ChatApp/widgets/widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -11,29 +14,43 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  bool isLoading = false;
-
   AuthMethods authMethods = new AuthMethods();
-
+  DataBaseMethods dataBaseMethods = new DataBaseMethods();
   final formKey = GlobalKey<FormState>();
 
   TextEditingController emailTextEditingController =
       new TextEditingController();
   TextEditingController passwordTextEditingController =
       new TextEditingController();
-
+  bool isLoading = false;
+  QuerySnapshot snapshotUserInfo;
   signMeIn() {
     if (formKey.currentState.validate()) {
+      HelperFunctions.saveUserEmailSharedPreference(
+          emailTextEditingController.text);
+
+      //TODO function to get userDetails
       setState(() {
         isLoading = true;
+      });
+
+      dataBaseMethods
+          .getUserByUserEmail(emailTextEditingController.text)
+          .then((val) {
+        snapshotUserInfo = val;
+        HelperFunctions.saveUserEmailSharedPreference(
+            snapshotUserInfo.documents[0].data["name"]);
       });
 
       authMethods
           .signInWithEmailAndPassWord(emailTextEditingController.text,
               passwordTextEditingController.text)
           .then((val) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => ChatRoom()));
+        if (val != null) {
+          HelperFunctions.saveUserLoggedInSharedPreference(true).then((val) {});
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => ChatRoom()));
+        }
       });
     }
   }

@@ -27,9 +27,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
   ///search chatroom, send user ot conversation screen, pushreplacement
   createChatRoomAndStartConversation(String userName) {
-    List<String> users = [
-      userName,
-    ];
+    // List<String> users = [
+    //   userName,
+    // ];
     // dataBaseMethods.createChatRoom(); 
   }
 
