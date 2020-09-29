@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
     List<String> users = [
       userName,
     ];
-    dataBaseMethods.createChatRoom();
+    // dataBaseMethods.createChatRoom(); 
   }
 
   Widget searchList() {
