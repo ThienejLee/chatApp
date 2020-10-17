@@ -36,10 +36,10 @@ class _SignUpState extends State<SignUp> {
         "email": emailTextEditingController.text,
       };
 
-      HelperFunctions.saveUserEmailSharedPreference(emailTextEditingController.text);
-      HelperFunctions.saveUserNameSharedPreference(usernameTextEditingController.text);
-
-
+      HelperFunctions.saveUserEmailSharedPreference(
+          emailTextEditingController.text);
+      HelperFunctions.saveUserNameSharedPreference(
+          usernameTextEditingController.text);
 
       setState(() {
         isLoading = true;
@@ -137,10 +137,13 @@ class _SignUpState extends State<SignUp> {
                           width: MediaQuery.of(context).size.width,
                           padding: EdgeInsets.symmetric(vertical: 20),
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                const Color(0xff007EF4),
-                                const Color(0xff2A75BC),
-                              ]),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment(0.8, 0.0),
+                                  colors: [
+                                    const Color(0xff007EF4),
+                                    const Color(0xff2A75BC),
+                                  ]),
                               borderRadius: BorderRadius.circular(30)),
                           child: Text(
                             "Sign Up",

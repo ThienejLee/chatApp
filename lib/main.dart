@@ -1,19 +1,35 @@
 import 'package:ChatApp/helper/authenticate.dart';
 import 'package:ChatApp/helper/helperfunctions.dart';
 import 'package:ChatApp/views/chatRoomsScreen.dart';
-import 'package:ChatApp/views/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Zebo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: 'Zebo'),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   bool userIsLoggedIn = false;
 
   @override
@@ -44,6 +60,8 @@ class _MyAppState extends State<MyApp> {
         home: userIsLoggedIn ? ChatRoom() : Authenticate());
   }
 }
+
+
 
 class IamBlank extends StatefulWidget {
   @override

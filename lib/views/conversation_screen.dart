@@ -62,126 +62,62 @@ class _ConversationScreenState extends State<ConversationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBarMain(context),
-        body: Stack(
+      appBar: appBarMain(context),
+      body:
+
+          /// code chay bth, ko auto scroll dc nen phai xai listview
+          Container(
+        child: Column(
           children: [
-            Column(
-              children: <Widget>[
-                //appBar(),
-                Flexible(
-                  child: ListView(
-                    children: <Widget>[
-                      //Display list
-                      // i can see anything mmmmmmmm
-                      Expanded(child: ChatMessageList()),
-                    ],
-                    reverse: true,
-                  ),
-                ),
-                //build mess
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    color: Color(0x54FFFFFF),
-                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: messageController,
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              hintText: "mess...",
-                              hintStyle: TextStyle(
-                                color: Colors.white54,
-                              ),
-                              border: InputBorder.none,
-                            ),
+            Expanded(child: ChatMessageList()),
+            Container(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                color: Color(0x54FFFFFF),
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: messageController,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: "mess...",
+                          hintStyle: TextStyle(
+                            color: Colors.white54,
                           ),
+                          border: InputBorder.none,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            sendMessage();
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                const Color(0x36FFFFFF),
-                                const Color(0x0FFFFFFF),
-                              ]),
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            //padding: EdgeInsets.all(12),
-                            child: Image.asset(
-                              "assets/images/send.png",
-                            ),
-                          ),
-                        )
-                      ],
+                      ),
                     ),
-                  ),
+                    GestureDetector(
+                      onTap: () {
+                        sendMessage();
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            const Color(0x36FFFFFF),
+                            const Color(0x0FFFFFFF),
+                          ]),
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        //padding: EdgeInsets.all(12),
+                        child: Image.asset(
+                          "assets/images/send.png",
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            )
+              ),
+            ),
           ],
-        )
-
-
-        /// code chay bth, ko auto scroll dc nen phai xai listview
-        // Container(
-        //   child: Column(
-        //     children: [
-        //       Expanded(child: ChatMessageList()),
-        //       Container(
-        //         alignment: Alignment.bottomCenter,
-        //         child: Container(
-        //           color: Color(0x54FFFFFF),
-        //           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        //           child: Row(
-        //             children: [
-        //               Expanded(
-        //                 child: TextField(
-        //                   controller: messageController,
-        //                   style: TextStyle(color: Colors.white),
-        //                   decoration: InputDecoration(
-        //                     hintText: "mess...",
-        //                     hintStyle: TextStyle(
-        //                       color: Colors.white54,
-        //                     ),
-        //                     border: InputBorder.none,
-        //                   ),
-        //                 ),
-        //               ),
-        //               GestureDetector(
-        //                 onTap: () {
-        //                   sendMessage();
-        //                 },
-        //                 child: Container(
-        //                   height: 40,
-        //                   width: 40,
-        //                   decoration: BoxDecoration(
-        //                     gradient: LinearGradient(colors: [
-        //                       const Color(0x36FFFFFF),
-        //                       const Color(0x0FFFFFFF),
-        //                     ]),
-        //                     borderRadius: BorderRadius.circular(40),
-        //                   ),
-        //                   //padding: EdgeInsets.all(12),
-        //                   child: Image.asset(
-        //                     "assets/images/send.png",
-        //                   ),
-        //                 ),
-        //               )
-        //             ],
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        );
+        ),
+      ),
+    );
   }
 }
 
@@ -189,7 +125,7 @@ class MessageTile extends StatelessWidget {
   final String message;
   final bool isSendByMe;
   MessageTile(this.message, this.isSendByMe);
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
